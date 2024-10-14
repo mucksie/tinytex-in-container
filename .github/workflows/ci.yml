@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  create:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TINYTEX_VERSION: 0.53
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --tag tinytex:$TINYTEX_VERSION
