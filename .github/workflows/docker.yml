@@ -9,28 +9,33 @@ on:
 
 env:
   IMAGE_NAME: tinytex
+  REGISTRY: ghcr.io
 
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
 
     permissions:
       packages: write
       contents: read
 
-    env:
-      TINYTEX_VERSION: 0.53
-
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
 
-    - name: Log in to registry
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+    - name: Log into registry ${{ env.REGISTRY }}
+      if: github.event_name != 'pull_request'
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Push image
+      if: github.event_name != 'pull_request'
       run: |
         IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
         # This changes all uppercase characters to lowercase.
