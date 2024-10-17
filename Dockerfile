@@ -4,6 +4,7 @@ RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
     ca-certificates \
     fontconfig \
+    gnupg \
     perl \
     tar \
     wget \
