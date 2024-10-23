@@ -8,8 +8,8 @@ RUN apt-get update \
     perl \
     tar \
     wget \
-    # Cleanup
- && apt clean \
+### Cleanup
+ && apt-get clean \
  && rm --recursive --force /var/lib/apt/lists/*
 
 RUN mkdir /tinytex \
