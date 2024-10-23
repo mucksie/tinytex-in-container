@@ -8,7 +8,7 @@ on:
       - v*
 
 env:
-  IMAGE_NAME: mucksie/tinytex
+  IMAGE_NAME: tinytex
   REGISTRY: ghcr.io
 
 jobs:
