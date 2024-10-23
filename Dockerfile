@@ -11,8 +11,8 @@ RUN apt-get update \
 ### Cleanup
  && apt-get clean \
  && rm --recursive --force /var/lib/apt/lists/*
-
-RUN mkdir /tinytex \
+### Install minimal Tex Live
+ && mkdir --parents /tinytex \
  && cd /tinytex \
  && wget "https://yihui.org/gh/tinytex/tools/install-unx.sh" \
  && chmod +x install-unx.sh \
