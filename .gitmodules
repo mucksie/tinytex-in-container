@@ -1,0 +1,3 @@
+[submodule "tinytex"]
+	path = tinytex
+	url = https://github.com/rstudio/tinytex.git
