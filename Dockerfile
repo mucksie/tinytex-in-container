@@ -1,4 +1,4 @@
-FROM debian:12.8-slim
+FROM debian:12.9-slim
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
