@@ -8,8 +8,6 @@ RUN apt-get update \
     perl \
     tar \
     wget \
-### Cleanup
- && apt-get clean \
  && rm --recursive --force /var/lib/apt/lists/* \
 ### Install minimal Tex Live
  && mkdir --parents /tinytex \
